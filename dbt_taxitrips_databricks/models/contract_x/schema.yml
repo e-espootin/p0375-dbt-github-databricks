@@ -8,6 +8,11 @@ models:
       contract:
         enforced: true
         # schema_file: contract.yml
+      constraints:
+          - type: check
+            columns: ["driver_email"]
+            expression: "len(passenger_email) > 5"
+            name: "passenger_email_length"
     columns:
       - name: VendorID
         description: "The vendor id"
@@ -26,4 +31,33 @@ models:
         data_type: timestamp
         data_tests:
           - not_null
-
+      - name: passenger_email
+        description: "The passenger email"
+        data_type: string
+        constraints:
+          - type: check
+            expression: "len(passenger_email) > 5"
+            name: "passenger_email_length"
+        data_tests:
+          - not_null
+      - name: driver_email
+        data_type: string
+      - name: trip_distance
+        data_type: double
+        constraints:
+          - type: check
+            expression: "trip_distance > 0"
+            name: "trip_distance_positive"
+      - name: PULocationID
+        data_type: float
+      - name: payment_type
+        data_type: string
+      - name: fare_amount
+        data_type: int
+      - name: passenger_credit_card
+        data_type: string
+        constraints:
+          - type: check
+            expression: "passenger_credit_card!='*****'"
+            name: "passenger_credit_card_should_be_masked"
+       
