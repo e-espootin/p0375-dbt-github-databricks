@@ -1,0 +1,6 @@
+.venv
+#
+logs/
+
+# dbt_taxitrips_databricks
+dbt_taxitrips_databricks/profile.yaml
