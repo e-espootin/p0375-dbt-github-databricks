@@ -50,11 +50,11 @@ jobs:
           outputs:
             dev:
               type: databricks
-              server_host: ${{ secrets.DATABRICKS_SERVER_HOST }}
-              http_path: ${{ secrets.DATABRICKS_HTTP_PATH }}
+              host: dbc-476ca79a-79a1.cloud.databricks.com
+              http_path: /sql/1.0/warehouses/e60c44d87a6b2af0
               token: ${{ secrets.DATABRICKS_TOKEN }}
-              schema: ${{ secrets.DBT_SCHEMA || 'default' }}
-              catalog: ${{ secrets.DBT_CATALOG || 'hive_metastore' }}
+              schema: dbt
+              catalog: app_holozmo_dev
           target: dev
         " > ~/.dbt/profiles.yml
 
