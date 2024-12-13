@@ -2,11 +2,11 @@ name: Run DBT on Databricks
 
 on:
   workflow_dispatch: # Allows manual trigger
-    inputs:
-      dbt_target:
-        description: 'Specify the DBT target (e.g., dev, stage)'
-        required: true
-        default: stage
+    # inputs:
+    #   dbt_target:
+    #     description: 'Specify the DBT target (e.g., dev, stage)'
+    #     required: true
+    #     default: stage
   push: # Runs on push to specific branches
     branches:
       - main
@@ -16,13 +16,13 @@ jobs:
     runs-on: ubuntu-latest
 
     env:
-      DBT_TARGET: ${{ inputs.dbt_target }}
+      DBT_TARGET: stage
 
     steps:
     # Step 0: Set up environment variables
     - name: Print DBT target
-      run: echo "DBT target is ${{ inputs.dbt_target }}"
-      
+      run: echo "DBT target is ${{ env.DBT_TARGET }}"
+
     # Step 1: Check out the repository
     - name: Checkout code
       uses: actions/checkout@v3
@@ -64,12 +64,12 @@ jobs:
 
     # Step 5: Debug connection 
     - name: Test connection
-      run: dbt debug --target ${{ env.dbt_target }}
+      run: dbt debug --target ${{ env.DBT_TARGET }}
 
     # Step 6: Install dependencies (dbt deps)
     - name: Install DBT dependencies
-      run: dbt deps --target ${{ env.dbt_target }}
+      run: dbt deps --target ${{ env.DBT_TARGET }}
 
     # Step 7: Run DBT models
     - name: Run DBT models
-      run: dbt run --target ${{ env.dbt_target }}
+      run: dbt run --target ${{ env.DBT_TARGET }}
