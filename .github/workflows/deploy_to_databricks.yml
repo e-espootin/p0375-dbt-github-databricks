@@ -60,11 +60,11 @@ jobs:
               schema: dbt
               catalog: app_holozmo_dev
           target: dev
-        " > ~/.dbt/profiles.yml
+        " > /home/runner/.dbt/profiles.yml
     
     # Step 4-1: Echo DBT profiles.yml for debugging
     - name: Echo DBT profiles.yml
-      run: cat ~/.dbt/profiles.yml
+      run: cat /home/runner/.dbt/profiles.yml
       working-directory: ${{ env.WORKING_DIR }}
 
     # Step 5: Debug connection 
