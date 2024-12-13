@@ -50,7 +50,7 @@ jobs:
       run: |
         mkdir -p ~/.dbt
         echo "
-        databricks_profile:
+        dbt_taxitrips_databricks:
           outputs:
             dev:
               type: databricks
