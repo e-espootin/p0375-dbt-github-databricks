@@ -17,8 +17,12 @@ jobs:
 
     env:
       DBT_TARGET: ${{ inputs.dbt_target }}
-      
+
     steps:
+    # Step 0: Set up environment variables
+    - name: Print DBT target
+      run: echo "DBT target is ${{ inputs.dbt_target }}"
+      
     # Step 1: Check out the repository
     - name: Checkout code
       uses: actions/checkout@v3
@@ -60,12 +64,12 @@ jobs:
 
     # Step 5: Debug connection 
     - name: Test connection
-      run: dbt debug --target ${{ env.DBT_TARGET }}
+      run: dbt debug --target ${{ env.dbt_target }}
 
     # Step 6: Install dependencies (dbt deps)
     - name: Install DBT dependencies
-      run: dbt deps --target ${{ env.DBT_TARGET }}
+      run: dbt deps --target ${{ env.dbt_target }}
 
     # Step 7: Run DBT models
     - name: Run DBT models
-      run: dbt run --target ${{ env.DBT_TARGET }}
+      run: dbt run --target ${{ env.dbt_target }}

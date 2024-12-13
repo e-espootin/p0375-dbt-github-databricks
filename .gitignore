@@ -3,4 +3,5 @@
 logs/
 
 # dbt_taxitrips_databricks
-dbt_taxitrips_databricks/profile.yaml
+dbt_taxitrips_databricks/profiles.yml
+
