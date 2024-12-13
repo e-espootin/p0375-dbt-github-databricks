@@ -1,0 +1,29 @@
+
+version: 2
+
+models:
+  - name: taxi_trips_TLC_2024
+    description: "Taxi trips data from the TLC 2024"
+    config:
+      contract:
+        enforced: true
+        # schema_file: contract.yml
+    columns:
+      - name: VendorID
+        description: "The vendor id"
+        data_type: int
+        constraints:
+          - type: not_null
+        data_tests:
+          - not_null
+      - name: pickup_datetime
+        description: "The pickup datetime"
+        data_type: timestamp
+        data_tests:
+          - not_null
+      - name: dropoff_datetime
+        description: "The dropoff datetime"
+        data_type: timestamp
+        data_tests:
+          - not_null
+

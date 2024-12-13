@@ -1,0 +1,15 @@
+version: 2
+
+sources:
+  - name: databricks_dbt
+    # database: dbt_db  
+    schema: dbt
+    tables:
+      - name: taxi_trips_TLC_2024
+
+  - name: taxitrip_dev_ingest_dev
+    # database: dbt_db  
+    schema: taxitrip_dev_ingest_dev
+    tables:
+      - name: taxitrips_dlt_gold
+
