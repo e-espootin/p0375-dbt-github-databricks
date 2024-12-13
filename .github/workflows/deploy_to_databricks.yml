@@ -52,14 +52,14 @@ jobs:
         echo "
         dbt_taxitrips_databricks:
           outputs:
-            dev:
+            ${{ env.DBT_TARGET }}:
               type: databricks
               host: dbc-476ca79a-79a1.cloud.databricks.com
               http_path: /sql/1.0/warehouses/e60c44d87a6b2af0
               token: ${{ secrets.DATABRICKS_TOKEN }}
               schema: dbt
               catalog: app_holozmo_dev
-          target: dev
+          target: ${{ env.DBT_TARGET }}
         " > /home/runner/.dbt/profiles.yml
     
     # Step 4-1: Echo DBT profiles.yml for debugging
