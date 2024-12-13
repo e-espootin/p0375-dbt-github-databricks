@@ -17,7 +17,7 @@ jobs:
 
     env:
       DBT_TARGET: stage
-
+      WORKING_DIR: dbt_taxitrips_databricks
     steps:
     # Step 0: Set up environment variables
     - name: Print DBT target
@@ -61,15 +61,23 @@ jobs:
               catalog: app_holozmo_dev
           target: dev
         " > ~/.dbt/profiles.yml
+    
+    # Step 4-1: Echo DBT profiles.yml for debugging
+    - name: Echo DBT profiles.yml
+      run: cat ~/.dbt/profiles.yml
+      working-directory: ${{ env.WORKING_DIR }}
 
     # Step 5: Debug connection 
     - name: Test connection
       run: dbt debug --target ${{ env.DBT_TARGET }}
+      working-directory: ${{ env.WORKING_DIR }}
 
     # Step 6: Install dependencies (dbt deps)
     - name: Install DBT dependencies
       run: dbt deps --target ${{ env.DBT_TARGET }}
+      working-directory: ${{ env.WORKING_DIR }}
 
     # Step 7: Run DBT models
     - name: Run DBT models
       run: dbt run --target ${{ env.DBT_TARGET }}
+      working-directory: ${{ env.WORKING_DIR }}
