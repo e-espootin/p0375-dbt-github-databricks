@@ -10,3 +10,6 @@ This project is a dbt (data build tool) initiative designed to run on Databricks
 
 ![data contract model](images/model.png)
 
+
+## Project architecture
+![Project Architecture](images/diagram_s3.png)
